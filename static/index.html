@@ -6,31 +6,14 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-	<div id="box">
-		<header>
-			<h3> 3 February 2020<br>Monday</h3>
-			<hr>
-		</header>
-		<content>
-			<h3>&nbsp;ASSIGNMENT 1</h3>
-			<h3>&nbsp;COGS 120</h3>
-			<h4>&nbsp;Due Date：6 February 2020</h4>
-			<h4>&nbsp;Time Left：3 Days</h4>
-			<h4><a>&nbsp;Notes：http://ixd.ucsd.edu/</a>
-			<hr>
-		</content>
-		<content>
-			<h3>&nbsp;ASSIGNMENT 2</h3>
-			<h3>&nbsp;MATH 180</h3>
-			<h4>&nbsp;Due Date：8 February 2020</h4>
-			<h4>&nbsp;Time Left：5 Days</h4>
-			<h4>&nbsp;Notes：CANVAS</h4>
-			<hr>
-		</content>
-		<content>
-			<h3>&nbsp;ASSIGNMENT 3</h3>
-			<h4>&nbsp;COGS 100</h4>
-		</content>
+<div id="box">
+	<header>
+		<h3 id="titleT" style="font-size: 22px;"></h3>
+		<hr>
+	</header>
+	<div id="jsonWrap">
+	</div>
+	<div id="footer">
 		<div id="footer1">
 			<img src="photo/1.png">
 		</div>
@@ -47,5 +30,55 @@
 			<a href="Planforme.html"><img src="photo/5.png"></a>
 		</div>
 	</div>
+</div>
+<script src="js/jquery.js"></script>
+<script src="js/json.js"></script>
+<script>
+    $(function () {
+        getData()
+    })
+    function getData() {
+        var myDate = new Date();
+        var xTtime = myDate.toLocaleDateString( ).replace(/\//g, '-');        //获取日期与时间
+		var titleT=new Date(xTtime).toDateString();
+		$("#titleT").html(titleT);
+        var assObj=saveAss();
+        var  assArr;
+        if (assObj) {
+         assArr=Storageget('assignment');
+        }
+        else {
+            $.ajax({
+                type: "get",
+                url: "./untitled.json",
+                async:false,
+                success: function (msg) {
+                    console.log(msg)
+                    assArr=msg['assignment'];
+                    Storageset('assignment',assArr);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        }
+        $('#jsonWrap').html('');
+        $(assArr).each(function (i,val) {
+            var name=val.name;
+            var classN=val.classN;
+            var date = new Date(val.date).toDateString();
+            var  startDate = Date.parse(date);
+            var  endDate = Date.parse(xTtime);
+            var days=(endDate - startDate)/(1*24*60*60*1000);
+            var obj='<div class="objS">\n' +
+                '\t\t\t<h4>'+name+'</h4>\n' +
+                '\t\t\t<h4>'+classN+'</h4>\n' +
+                '\t\t\t<h3>Due Date:&nbsp;'+date+'</h3>\n' +
+                '\t\t\t<h3>Time Left:&nbsp;'+Math.abs(parseInt(days))+' days</h3>\n' +
+                '\t\t</div>'
+			$('#jsonWrap').append(obj);
+        })
+    }
+</script>
 </body>
 </html>

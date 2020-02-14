@@ -6,23 +6,67 @@
 	<link rel="stylesheet" type="text/css" href="css/Second.css">
 </head>
 <body>
-	<div id="box">
-		<div id="header">
-			<form action="#" method="post">
-				<p class="a">Name:&nbsp;</p><input type="name" name="" required="required" >
-				<p>Class:&nbsp;</p><input type="" name="" >
-				<p>Due Date:&nbsp;</p><input type="date" name="" >
-				<p>Time<br>Needed:&nbsp;</p><input type="" name="">
-			</form>
-		</div>
-		<div id="footer">
-			<h2>Add</h2>
-		</div>
-		<div id="back">
-			<a href="index.html"><img src="photo/arrow.png"></a>
-		</div>
-	
+<div id="box">
+	<div id="header">
+		<form action="#" method="post">
+			<p class="a">Name:&nbsp;</p><input name="name" id="name" required="required" >
+			<p>Class:&nbsp;</p><input name="classN" id="classN">
+			<p>Due Date:&nbsp;</p><input type="date" name="date" id="date">
+			<!--<p>Time<br>Needed:&nbsp;</p><input  name="time" id="time">-->
+		</form>
 	</div>
+	<div id="footer">
+		<h2 onclick="postData()">Add</h2>
+	</div>
+	<div id="back">
+		<a href="index.html"><img src="photo/arrow.png"></a>
+	</div>
+</div>
+<script src="js/jquery.js"></script>
+<script src="js/json.js"></script>
+<script>
+    $(function () {
+        getData()
+    })
+    var assArr=[];
+    function getData() {
+        var assObj=saveAss();
+        if (assObj) {
+            assArr=Storageget('assignment');
+        }
+        else {
+            $.ajax({
+                type: "get",
+                url: "./untitled.json",
+                success: function (msg) {
+                    assArr=msg['assignment'];
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        }
+    }
+    function postData() {
+        var name=$("#name").val();
+        var classN=$("#classN").val();
+        var date=$("#date").val();
+        if (name&&classN&&date){
+            var obj={
+                "name":name,
+                "classN":classN,
+                "date":date,
+            }
+            assArr.push(obj);
+            Storageset('assignment',assArr);
+            alert('添加成功！');
+            window.location.href='./index.html'
+		}
+		else {
+            alert('信息项不能为空！')
+		}
+    }
 
+</script>
 </body>
 </html>
