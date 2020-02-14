@@ -8,8 +8,14 @@
 	position: relative;
 }
 #box header{
+	position: relative;
 	height: 52px;
 	text-align: center;
+}
+#login{
+	position: absolute;
+	height: 30px;
+	right: 10px;
 }
 #box div{
 	z-index: 1;
@@ -78,13 +84,4 @@
 
 .objS h3{
 	font-size: 17px;
-}
-
-#top1 img{
-	z-index: 10;
-	width: 33px;
-	height: 33px;
-	/*float: left;*/
-	margin-left: 220px;
-	margin-bottom: 100px;
 }
