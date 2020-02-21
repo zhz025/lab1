@@ -7,10 +7,18 @@
 }
 #header{
 	margin-left: 20px;
-	margin-top: 50px;
+	margin-top: 150px;
+}
+.form_obj{
+	margin: 10px 0;
+}
+#header span{
+	display: inline-flex;
+	width: 80px;
 }
 #header input{
-	margin-left: 80px;
+	width: 160px;
+	/*margin-left: 80px;*/
 }
 #footer{
 	width: 300px;
@@ -29,5 +37,8 @@
 	height: 33px;
 	float: left;
 	margin-left: 28px;
-	margin-top: 180px;
+	margin-top: 50px;
+}
+.highColor{
+	background-color: rgb(42,198,187);
 }

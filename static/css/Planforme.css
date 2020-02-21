@@ -24,5 +24,37 @@
 	height: 33px;
 	float: left;
 	margin-left: 28px;
-	margin-top: 560px;
+
+}
+#jsonWrap{
+	height: 500px;
+	overflow: auto;
+}
+.objS{
+	padding: 15px;
+	height: 230px;
+	border: 1px solid #9a9696;
+}
+
+.objS h4{
+	font-size: 20px;
+}
+
+.objS h3{
+	font-size: 17px;
+}
+
+.highColor{
+	color: rgb(42,198,187);
+}
+#continue {
+	background-color: rgb(42,198,187);
+	color: #fff;
+	width: 80%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 16px;
+	border-radius: 5px;
+	margin: 10px auto;
 }

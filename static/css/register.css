@@ -66,3 +66,12 @@ input::-webkit-input-placeholder {
 	text-align: center;
 	margin-top: 60px;
 }
+
+.highColor{
+	color: rgb(42,198,187);
+}
+
+.highColorBtn{
+	background-color:rgb(42,198,187);;
+	color:#ffffff;
+}

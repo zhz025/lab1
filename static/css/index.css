@@ -65,7 +65,7 @@
 }
 #footer5 img{
 	z-index: 10;
-	width: 66px;
+	width: 120px;
 	height: 36px;
 	/*float: left;*/
 	margin-left: 14px;
@@ -74,7 +74,7 @@
 
 .objS{
 	padding: 15px;
-	height: 200px;
+	height: 230px;
 	border: 1px solid #9a9696;
 }
 
@@ -84,4 +84,8 @@
 
 .objS h3{
 	font-size: 17px;
+}
+
+.highColor{
+	color: rgb(42,198,187);
 }
